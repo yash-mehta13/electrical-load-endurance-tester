@@ -5,6 +5,11 @@ sdkconfig.old
 managed_components/
 dependencies.lock
 
+# PlatformIO
+.pio/
+.pioenvs/
+.piolibdeps/
+
 # Python
 __pycache__/
 *.pyc

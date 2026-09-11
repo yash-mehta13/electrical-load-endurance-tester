@@ -38,16 +38,31 @@ tests/          fault-injection logs collected during Phase 4/8
 
 ## Building
 
-Requires the ESP-IDF toolchain (v5.x). Not build-verified in the environment this repo was
-scaffolded in — run `idf.py build` locally before trusting it compiles.
+Two supported ways to build — pick whichever installs more cleanly on your machine:
+
+**Option A — PlatformIO (recommended on Windows if the raw ESP-IDF installer gives you
+pip/Python grief):** install the "PlatformIO IDE" extension in VS Code, then open
+`firmware/bringup/` as a PlatformIO project (it contains `platformio.ini`). PlatformIO
+downloads its own isolated toolchain — it doesn't touch your system Python/pip.
 
 ```bash
-# Phase 0 bring-up firmware (pick a test in menuconfig)
+cd firmware/bringup
+pio run -t menuconfig   # Bring-up Test Selection -> choose BLINK / ADC_READ / I2C_INA226 / DS18B20
+pio run -t upload
+pio device monitor
+```
+
+**Option B — raw ESP-IDF CLI (v5.x):**
+
+```bash
 cd firmware/bringup
 idf.py set-target esp32
 idf.py menuconfig   # Bring-up Test Selection -> choose BLINK / ADC_READ / I2C_INA226 / DS18B20
 idf.py build flash monitor
 ```
+
+Not build-verified in the environment this repo was scaffolded in (no toolchain/network
+access here) — verify locally before trusting it compiles either way.
 
 ## License
 
