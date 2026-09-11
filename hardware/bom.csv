@@ -1,0 +1,16 @@
+item,qty,unit_price_inr_low,unit_price_inr_high,notes
+ESP32 DevKit (WROOM-32, 38-pin),1,280,400,Main controller
+BTS7960 high-side smart switch module,1,250,330,"Preferred switch; has HW overcurrent/thermal/short protection + current sense"
+N-MOSFET + opto-isolator/gate driver,1,100,150,Fallback if BTS7960 unavailable
+INA226 current/voltage sensor module (I2C),1,150,300,
+Voltage divider resistors (precision set),10,2,5,For tuning divider ratio
+DS18B20 waterproof temp probe,1,90,150,
+Flyback/snubber diode (1N5408 or similar),5,5,10,Spares
+Fuse holder + assorted blade fuses,1,80,150,
+SN65HVD230 CAN transceiver module,1,200,300,
+Test load - 12V relay,1,50,150,
+Test load - small 12V DC motor,1,80,200,
+Test load - 12V lamp + holder,1,50,100,
+Breadboard/perfboard/jumpers/headers/misc,1,200,300,
+12V bench PSU (0-30V 0-5A budget),1,2000,4000,Skip if lab access available
+USB-CAN adapter (for Phase 6 verification),1,800,2500,Check lab availability first

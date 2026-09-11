@@ -1,0 +1,45 @@
+menu "Bring-up Test Selection (Phase 0)"
+
+    choice BRINGUP_TEST
+        prompt "Which Phase 0 bring-up test to run"
+        default BRINGUP_TEST_BLINK
+        help
+            Phase 0 proves each piece of hardware in isolation before any FreeRTOS
+            task structure exists. Pick one test at a time, flash, verify, move on.
+
+        config BRINGUP_TEST_BLINK
+            bool "Blink onboard LED + UART console skeleton"
+        config BRINGUP_TEST_ADC_READ
+            bool "Raw ADC read (voltage divider)"
+        config BRINGUP_TEST_I2C_INA226
+            bool "I2C read from INA226 (current/voltage)"
+        config BRINGUP_TEST_DS18B20
+            bool "DS18B20 / 1-Wire temperature read"
+    endchoice
+
+    config BRINGUP_LED_GPIO
+        int "Onboard LED GPIO"
+        default 2
+        depends on BRINGUP_TEST_BLINK
+
+    config BRINGUP_ADC_GPIO
+        int "ADC input GPIO (voltage divider tap)"
+        default 34
+        depends on BRINGUP_TEST_ADC_READ
+
+    config BRINGUP_I2C_SDA_GPIO
+        int "I2C SDA GPIO"
+        default 21
+        depends on BRINGUP_TEST_I2C_INA226
+
+    config BRINGUP_I2C_SCL_GPIO
+        int "I2C SCL GPIO"
+        default 22
+        depends on BRINGUP_TEST_I2C_INA226
+
+    config BRINGUP_ONEWIRE_GPIO
+        int "1-Wire (DS18B20) data GPIO"
+        default 4
+        depends on BRINGUP_TEST_DS18B20
+
+endmenu
