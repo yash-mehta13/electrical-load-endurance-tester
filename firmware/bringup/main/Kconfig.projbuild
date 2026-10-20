@@ -19,26 +19,51 @@ menu "Bring-up Test Selection (Phase 0)"
 
     config BRINGUP_LED_GPIO
         int "Onboard LED GPIO"
+        range 0 33
         default 2
         depends on BRINGUP_TEST_BLINK
 
     config BRINGUP_ADC_GPIO
         int "ADC input GPIO (voltage divider tap)"
+        range 32 39
         default 34
         depends on BRINGUP_TEST_ADC_READ
+        help
+            Must be an ADC1 pin (GPIO32-39 on ESP32). The ADC channel is derived
+            from this number at run time. GPIO34-39 are input-only.
+
+    config BRINGUP_ADC_DIVIDER_R_TOP_OHM
+        int "Voltage divider: resistor from sensed rail to ADC pin (ohm)"
+        range 1 10000000
+        default 10000
+        depends on BRINGUP_TEST_ADC_READ
+        help
+            EXAMPLE default only. Set to the resistor actually fitted. The real
+            divider values are not yet recorded in this repository.
+
+    config BRINGUP_ADC_DIVIDER_R_BOTTOM_OHM
+        int "Voltage divider: resistor from ADC pin to GND (ohm)"
+        range 1 10000000
+        default 2200
+        depends on BRINGUP_TEST_ADC_READ
+        help
+            EXAMPLE default only. Set to the resistor actually fitted.
 
     config BRINGUP_I2C_SDA_GPIO
         int "I2C SDA GPIO"
+        range 0 33
         default 21
         depends on BRINGUP_TEST_I2C_INA226
 
     config BRINGUP_I2C_SCL_GPIO
         int "I2C SCL GPIO"
+        range 0 33
         default 22
         depends on BRINGUP_TEST_I2C_INA226
 
     config BRINGUP_ONEWIRE_GPIO
         int "1-Wire (DS18B20) data GPIO"
+        range 0 33
         default 4
         depends on BRINGUP_TEST_DS18B20
 

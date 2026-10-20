@@ -19,3 +19,9 @@ __pycache__/
 .DS_Store
 *.swp
 .vscode/
+
+# PlatformIO / ESP-IDF generated per-environment config (keep sdkconfig.defaults*)
+sdkconfig.*
+!sdkconfig.defaults*
+
+# Host unit-test output goes to build/ (already ignored above)

@@ -8,6 +8,10 @@
  *
  * Gate for this test: printed temperature matches a room-temperature
  * reference (thermometer/phone weather app) within a couple of degrees.
+ *
+ * A read of exactly 85.0 C is the DS18B20 power-on reset value and usually
+ * means the conversion did not run; it is reported as suspect. Read/CRC
+ * errors are logged and retried instead of aborting the program.
  */
 
 #include "sdkconfig.h"
@@ -42,7 +46,7 @@ void test_ds18b20_run(void)
     while (onewire_device_iter_get_next(iter, &device) == ESP_OK) {
         ds18b20_config_t ds_cfg = {};
         if (ds18b20_new_device(&device, &ds_cfg, &ds18b20) == ESP_OK) {
-            ESP_LOGI(TAG, "Found DS18B20, address: %016llX", device.address);
+            ESP_LOGI(TAG, "Found DS18B20, address: %016llX", (unsigned long long)device.address);
             break; /* Phase 0 only needs the first sensor found */
         }
     }
@@ -55,10 +59,18 @@ void test_ds18b20_run(void)
     }
 
     while (1) {
-        ESP_ERROR_CHECK(ds18b20_trigger_temperature_conversion(ds18b20));
         float temp_c = 0;
-        ESP_ERROR_CHECK(ds18b20_get_temperature(ds18b20, &temp_c));
-        ESP_LOGI(TAG, "temperature ≈ %.2f °C", temp_c);
+        esp_err_t err = ds18b20_trigger_temperature_conversion(ds18b20);
+        if (err == ESP_OK) {
+            err = ds18b20_get_temperature(ds18b20, &temp_c);
+        }
+        if (err != ESP_OK) {
+            ESP_LOGE(TAG, "read failed: %s (check wiring, 4.7k pull-up, power)", esp_err_to_name(err));
+        } else if (temp_c == 85.0f) {
+            ESP_LOGW(TAG, "temperature = 85.00 C is the sensor reset value - treat as suspect");
+        } else {
+            ESP_LOGI(TAG, "temperature = %.2f C", (double)temp_c);
+        }
         vTaskDelay(pdMS_TO_TICKS(1000));
     }
 }

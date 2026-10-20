@@ -1,10 +1,10 @@
 item,qty,unit_price_inr_low,unit_price_inr_high,notes
-ESP32 DevKit (WROOM-32, 38-pin),1,280,400,Main controller
-BTS7960 high-side smart switch module,1,250,330,"Preferred switch; has HW overcurrent/thermal/short protection + current sense"
+"ESP32 DevKit (WROOM-32, 38-pin)",1,280,400,Main controller
+BTS7960 high-side smart switch module,1,250,330,"Candidate switch (not finalised); integrated half-bridge with datasheet-listed protection and current sense - thresholds/behaviour unverified for this module"
 N-MOSFET + opto-isolator/gate driver,1,100,150,Fallback if BTS7960 unavailable
-INA226 current/voltage sensor module (I2C),1,150,300,
-Voltage divider resistors (precision set),10,2,5,For tuning divider ratio
-DS18B20 waterproof temp probe,1,90,150,
+INA226 current/voltage sensor module (I2C),1,150,300,"Shunt value on module not recorded - check; full-scale shunt voltage limits max current"
+Voltage divider resistors (precision set),10,2,5,For tuning divider ratio; actual values not yet recorded
+DS18B20 waterproof temp probe,1,90,150,"Needs 4.7k pull-up to 3.3V (not listed in BOM)"
 Flyback/snubber diode (1N5408 or similar),5,5,10,Spares
 Fuse holder + assorted blade fuses,1,80,150,
 SN65HVD230 CAN transceiver module,1,200,300,
