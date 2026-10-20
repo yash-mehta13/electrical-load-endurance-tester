@@ -1,9 +1,10 @@
 /*
  * Phase 0 - Test 3: I2C read from the INA226 current/voltage sensor.
  *
- * This test only reads the bus voltage register (no calibration/current
- * config yet) — the goal is just "can the ESP32 talk to the chip and get
- * a plausible number back". Full current-sense calibration (shunt value,
+ * This test reads the manufacturer/die ID registers once (identity check)
+ * and then the bus voltage register (no calibration/current config yet) —
+ * the goal is just "can the ESP32 talk to the chip and get a plausible
+ * number back". Full current-sense calibration (shunt value,
  * cal register) belongs to Phase 2's proper sensing task.
  *
  * Gate for this test: printed bus voltage roughly matches what a multimeter
@@ -20,7 +21,19 @@ static const char *TAG = "test_i2c_ina226";
 
 #define INA226_ADDR        0x40   /* default address, A0/A1 tied low */
 #define REG_BUS_VOLTAGE    0x02
+#define REG_MANUFACTURER   0xFE   /* expected 0x5449 ("TI"); from memory of the datasheet - confirm */
+#define REG_DIE_ID         0xFF   /* expected 0x2260; from memory of the datasheet - confirm */
 #define BUS_VOLTAGE_LSB_MV 1.25f  /* datasheet: 1.25 mV per bit */
+
+static esp_err_t ina226_read_reg(i2c_master_dev_handle_t dev, uint8_t reg, uint16_t *out)
+{
+    uint8_t data[2] = {0};
+    esp_err_t err = i2c_master_transmit_receive(dev, &reg, 1, data, 2, 100);
+    if (err == ESP_OK) {
+        *out = (uint16_t)((data[0] << 8) | data[1]);
+    }
+    return err;
+}
 
 void test_i2c_ina226_run(void)
 {
@@ -46,15 +59,23 @@ void test_i2c_ina226_run(void)
     ESP_LOGI(TAG, "Reading INA226 bus voltage register every 500 ms (SDA=GPIO%d SCL=GPIO%d)",
              CONFIG_BRINGUP_I2C_SDA_GPIO, CONFIG_BRINGUP_I2C_SCL_GPIO);
 
-    while (1) {
-        uint8_t reg = REG_BUS_VOLTAGE;
-        uint8_t data[2] = {0};
+    uint16_t id = 0;
+    if (ina226_read_reg(dev_handle, REG_MANUFACTURER, &id) == ESP_OK) {
+        ESP_LOGI(TAG, "manufacturer ID = 0x%04X (expected 0x5449 - unconfirmed)", id);
+    } else {
+        ESP_LOGE(TAG, "manufacturer ID read failed - device absent or wrong address/wiring");
+    }
+    if (ina226_read_reg(dev_handle, REG_DIE_ID, &id) == ESP_OK) {
+        ESP_LOGI(TAG, "die ID = 0x%04X (expected 0x2260 - unconfirmed)", id);
+    }
 
-        esp_err_t err = i2c_master_transmit_receive(dev_handle, &reg, 1, data, 2, 100);
+    while (1) {
+        uint16_t raw = 0;
+
+        esp_err_t err = ina226_read_reg(dev_handle, REG_BUS_VOLTAGE, &raw);
         if (err == ESP_OK) {
-            uint16_t raw = (data[0] << 8) | data[1];
             float bus_v = raw * BUS_VOLTAGE_LSB_MV / 1000.0f;
-            ESP_LOGI(TAG, "bus_voltage ≈ %.3f V (raw=0x%04X)", bus_v, raw);
+            ESP_LOGI(TAG, "bus_voltage = %.3f V (raw=0x%04X)", (double)bus_v, raw);
         } else {
             ESP_LOGE(TAG, "I2C read failed: %s (check wiring/address 0x%02X)",
                      esp_err_to_name(err), INA226_ADDR);

@@ -1,0 +1,29 @@
+name: Feature request
+description: Propose an improvement or a new capability
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: What problem does this solve?
+    validations:
+      required: true
+  - type: dropdown
+    id: phase
+    attributes:
+      label: Roadmap phase it belongs to
+      options: ["0 Bring-up", "1 Switching hardware", "2 Sensing", "3 State machine", "4 Fault diagnostics", "5 Watchdog", "6 CAN", "7 PC automation", "8 Validation", "Other / not sure"]
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed approach
+  - type: textarea
+    id: safety
+    attributes:
+      label: Safety and hardware impact
+      description: Effect on safe state, ratings, protection, low-voltage DC scope
+  - type: textarea
+    id: verify
+    attributes:
+      label: How would it be verified?
+      description: Unit test, hardware-in-the-loop, or bench measurement with a reference instrument

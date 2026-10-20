@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" width="1000" height="560" font-family="Helvetica, Arial, sans-serif" role="img" aria-labelledby="t d">
+<title id="t">Phase 0 default pin map</title>
+<desc id="d">Software default GPIO assignments from the bring-up Kconfig. Not verified on hardware. Load-control and CAN pins are unassigned.</desc>
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1b1f24"/></marker></defs>
+<rect x="0" y="0" width="1000" height="560" fill="#ffffff"/>
+<rect x="1" y="1" width="998" height="558" fill="none" stroke="#d0d7de" stroke-width="2" rx="10"/>
+<text x="24" y="34" font-size="17" font-weight="700" text-anchor="start" fill="#1b1f24" >Phase 0 bring-up default pin map - software defaults (menuconfig), wiring NOT verified on hardware</text>
+<rect x="380" y="70" width="240" height="330" rx="8" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2"/>
+<text x="500.0" y="222.0" font-size="14" font-weight="700" text-anchor="middle" fill="#1b1f24" >ESP32</text>
+<text x="500.0" y="240.0" font-size="13" font-weight="400" text-anchor="middle" fill="#4a5560" >WROOM-32 DevKit</text>
+<text x="500.0" y="258.0" font-size="13" font-weight="400" text-anchor="middle" fill="#4a5560" >(38-pin)</text>
+<rect x="24" y="77" width="316" height="38" rx="6" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2"/>
+<text x="36" y="101" font-size="14" font-weight="700" text-anchor="start" fill="#1b1f24" >GPIO2</text>
+<text x="104" y="101" font-size="12.5" font-weight="400" text-anchor="start" fill="#4a5560" >onboard LED (test: blink)</text>
+<line x1="340" y1="95" x2="380" y2="95" stroke="#1b1f24" stroke-width="2"/>
+<rect x="24" y="132" width="316" height="38" rx="6" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2"/>
+<text x="36" y="156" font-size="14" font-weight="700" text-anchor="start" fill="#1b1f24" >GPIO34</text>
+<text x="104" y="156" font-size="12.5" font-weight="400" text-anchor="start" fill="#4a5560" >ADC1_CH6 &lt;- divider tap (input-only)</text>
+<line x1="340" y1="150" x2="380" y2="150" stroke="#1b1f24" stroke-width="2"/>
+<rect x="24" y="187" width="316" height="38" rx="6" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2"/>
+<text x="36" y="211" font-size="14" font-weight="700" text-anchor="start" fill="#1b1f24" >GPIO21</text>
+<text x="104" y="211" font-size="12.5" font-weight="400" text-anchor="start" fill="#4a5560" >I2C SDA -&gt; INA226</text>
+<line x1="340" y1="205" x2="380" y2="205" stroke="#1b1f24" stroke-width="2"/>
+<rect x="24" y="242" width="316" height="38" rx="6" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2"/>
+<text x="36" y="266" font-size="14" font-weight="700" text-anchor="start" fill="#1b1f24" >GPIO22</text>
+<text x="104" y="266" font-size="12.5" font-weight="400" text-anchor="start" fill="#4a5560" >I2C SCL -&gt; INA226</text>
+<line x1="340" y1="260" x2="380" y2="260" stroke="#1b1f24" stroke-width="2"/>
+<rect x="24" y="297" width="316" height="38" rx="6" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2"/>
+<text x="36" y="321" font-size="14" font-weight="700" text-anchor="start" fill="#1b1f24" >GPIO4</text>
+<text x="104" y="321" font-size="12.5" font-weight="400" text-anchor="start" fill="#4a5560" >1-Wire DATA &lt;-&gt; DS18B20</text>
+<line x1="340" y1="315" x2="380" y2="315" stroke="#1b1f24" stroke-width="2"/>
+<rect x="660" y="77" width="316" height="38" rx="6" fill="#fef3c7" stroke="#b45309" stroke-width="2" stroke-dasharray="7 4"/>
+<text x="672" y="101" font-size="14" font-weight="700" text-anchor="start" fill="#1b1f24" >GPIO ?</text>
+<text x="740" y="101" font-size="12.5" font-weight="400" text-anchor="start" fill="#4a5560" >load enable / gate control</text>
+<line x1="620" y1="95" x2="660" y2="95" stroke="#1b1f24" stroke-width="2"/>
+<rect x="660" y="132" width="316" height="38" rx="6" fill="#fef3c7" stroke="#b45309" stroke-width="2" stroke-dasharray="7 4"/>
+<text x="672" y="156" font-size="14" font-weight="700" text-anchor="start" fill="#1b1f24" >GPIO ?</text>
+<text x="740" y="156" font-size="12.5" font-weight="400" text-anchor="start" fill="#4a5560" >TWAI TX -&gt; SN65HVD230</text>
+<line x1="620" y1="150" x2="660" y2="150" stroke="#1b1f24" stroke-width="2"/>
+<rect x="660" y="187" width="316" height="38" rx="6" fill="#fef3c7" stroke="#b45309" stroke-width="2" stroke-dasharray="7 4"/>
+<text x="672" y="211" font-size="14" font-weight="700" text-anchor="start" fill="#1b1f24" >GPIO ?</text>
+<text x="740" y="211" font-size="12.5" font-weight="400" text-anchor="start" fill="#4a5560" >TWAI RX &lt;- SN65HVD230</text>
+<line x1="620" y1="205" x2="660" y2="205" stroke="#1b1f24" stroke-width="2"/>
+<rect x="660" y="242" width="316" height="38" rx="6" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2"/>
+<text x="672" y="266" font-size="14" font-weight="700" text-anchor="start" fill="#1b1f24" >UART0</text>
+<text x="740" y="266" font-size="12.5" font-weight="400" text-anchor="start" fill="#4a5560" >console / flashing (USB bridge)</text>
+<line x1="620" y1="260" x2="660" y2="260" stroke="#1b1f24" stroke-width="2"/>
+<text x="24" y="430" font-size="13.5" font-weight="700" text-anchor="start" fill="#1b1f24" >Pin notes (from ESP32 documentation; confirm for your board):</text>
+<text x="32" y="452" font-size="12.5" font-weight="400" text-anchor="start" fill="#4a5560" >- GPIO34-39 are input-only; GPIO6-11 are tied to flash - do not use.</text>
+<text x="32" y="471" font-size="12.5" font-weight="400" text-anchor="start" fill="#4a5560" >- GPIO0, 2, 5, 12, 15 are strapping pins: do not let external circuits drive them at reset.</text>
+<text x="32" y="490" font-size="12.5" font-weight="400" text-anchor="start" fill="#4a5560" >- At reset GPIOs are not guaranteed to hold a level: the switching stage needs a hardware pull to its OFF level.</text>
+<text x="32" y="509" font-size="12.5" font-weight="400" text-anchor="start" fill="#4a5560" >- ADC2 pins conflict with Wi-Fi and are avoided; the ADC test accepts ADC1 pins only (GPIO32-39).</text>
+<text x="32" y="528" font-size="12.5" font-weight="400" text-anchor="start" fill="#4a5560" >- Never connect 12 V to any GPIO; the divider output must stay within the ADC range with margin.</text>
+<rect x="700" y="500" width="28" height="16" rx="3" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2"/>
+<text x="738" y="513" font-size="12.5" font-weight="400" text-anchor="start" fill="#4a5560" >Default exists in bring-up code</text>
+<rect x="700" y="524" width="28" height="16" rx="3" fill="#fef3c7" stroke="#b45309" stroke-width="2" stroke-dasharray="7 4"/>
+<text x="738" y="537" font-size="12.5" font-weight="400" text-anchor="start" fill="#4a5560" >Unassigned / unresolved</text>
+</svg>

@@ -1,5 +1,19 @@
 # Requirements
 
+Implementation status of each item: [traceability.md](traceability.md). Nothing below is
+implemented or verified merely because it is listed here.
+
+## Open issues with these requirements
+
+* **SR9** (physical isolation) conflicts with the "single star ground" hardware text and with
+  the non-isolated BOM modules; the topology decision is open ([audit.md](audit.md) A12).
+* **SR4/FR4** ask for a "bounded reaction time" without a number; thresholds and counts are
+  undefined ([fault_policy.md](fault_policy.md)).
+* **FR5** asks for a "hardware-fast path" that no BOM item provides beyond fuse/PTC and, for
+  one switch option, the BTS7960's internal protection (unverified).
+* **FR3** sampling rates: confirm INA226 conversion time/averaging allow 100 Hz.
+* **SR6/FR6** "transient" faults are undefined; until rules exist every fault latches.
+
 ## System Requirements
 
 | # | Requirement | Type |

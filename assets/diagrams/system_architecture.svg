@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 740" width="1000" height="740" font-family="Helvetica, Arial, sans-serif" role="img" aria-labelledby="t d">
+<title id="t">System architecture (intended)</title>
+<desc id="d">Block diagram of the intended single-channel 12 V DC endurance tester: bench supply, protection, switching stage options, load, sensing, ESP32, UART and CAN. Nothing is hardware-verified.</desc>
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1b1f24"/></marker></defs>
+<rect x="0" y="0" width="1000" height="740" fill="#ffffff"/>
+<rect x="1" y="1" width="998" height="738" fill="none" stroke="#d0d7de" stroke-width="2" rx="10"/>
+<text x="24" y="34" font-size="17" font-weight="700" text-anchor="start" fill="#1b1f24" >System architecture - intended design (Phase 0: nothing here is hardware-verified)</text>
+<rect x="24" y="70" width="130" height="70" rx="8" fill="#ffffff" stroke="#1b1f24" stroke-width="2"/>
+<text x="89.0" y="101.0" font-size="13" font-weight="400" text-anchor="middle" fill="#1b1f24" >current-limited</text>
+<text x="89.0" y="118.0" font-size="13" font-weight="400" text-anchor="middle" fill="#1b1f24" >12 V DC bench PSU</text>
+<rect x="214" y="70" width="130" height="70" rx="8" fill="#f1f3f5" stroke="#5c6773" stroke-width="2" stroke-dasharray="7 4"/>
+<text x="279.0" y="101.0" font-size="14" font-weight="400" text-anchor="middle" fill="#1b1f24" >Fuse / PTC</text>
+<text x="279.0" y="119.0" font-size="14" font-weight="400" text-anchor="middle" fill="#1b1f24" >rating TBD</text>
+<rect x="404" y="56" width="220" height="98" rx="8" fill="#fef3c7" stroke="#b45309" stroke-width="2" stroke-dasharray="7 4"/>
+<text x="514.0" y="83.0" font-size="14" font-weight="700" text-anchor="middle" fill="#1b1f24" >Switching stage (high-side)</text>
+<text x="514.0" y="101.0" font-size="13" font-weight="400" text-anchor="middle" fill="#4a5560" >A: BTS7960 module</text>
+<text x="514.0" y="119.0" font-size="13" font-weight="400" text-anchor="middle" fill="#4a5560" >B: N-MOSFET + gate driver</text>
+<text x="514.0" y="137.0" font-size="13" font-weight="400" text-anchor="middle" fill="#4a5560" >(not decided)</text>
+<rect x="684" y="70" width="140" height="70" rx="8" fill="#ffffff" stroke="#1b1f24" stroke-width="2"/>
+<text x="754.0" y="92.0" font-size="14" font-weight="700" text-anchor="middle" fill="#1b1f24" >12 V DC load</text>
+<text x="754.0" y="110.0" font-size="13" font-weight="400" text-anchor="middle" fill="#4a5560" >relay / solenoid /</text>
+<text x="754.0" y="128.0" font-size="13" font-weight="400" text-anchor="middle" fill="#4a5560" >motor / lamp</text>
+<rect x="874" y="70" width="102" height="70" rx="8" fill="#f1f3f5" stroke="#5c6773" stroke-width="2" stroke-dasharray="7 4"/>
+<text x="925.0" y="101.0" font-size="13" font-weight="400" text-anchor="middle" fill="#1b1f24" >flyback diode</text>
+<text x="925.0" y="118.0" font-size="13" font-weight="400" text-anchor="middle" fill="#1b1f24" >(inductive)</text>
+<path d="M154,105 L214,105" fill="none" stroke="#1b1f24" stroke-width="2" marker-end="url(#ah)"/>
+<path d="M344,105 L404,105" fill="none" stroke="#1b1f24" stroke-width="2" marker-end="url(#ah)"/>
+<text x="374" y="96" font-size="12" font-weight="400" text-anchor="middle" fill="#4a5560" >+12 V</text>
+<path d="M624,105 L684,105" fill="none" stroke="#1b1f24" stroke-width="2" marker-end="url(#ah)"/>
+<text x="654" y="96" font-size="11" font-weight="400" text-anchor="middle" fill="#4a5560" >switched</text>
+<path d="M824,105 L874,105" fill="none" stroke="#1b1f24" stroke-width="2" marker-end="url(#ah)"/>
+<path d="M119,176 L559,176" fill="none" stroke="#1b1f24" stroke-width="2" stroke-dasharray="5 3"/>
+<path d="M559,154 L559,176" fill="none" stroke="#1b1f24" stroke-width="2" stroke-dasharray="5 3" marker-end="url(#ah)"/>
+<text x="132" y="168" font-size="12" font-weight="400" text-anchor="start" fill="#4a5560" >measurement tap points (positions TBD)</text>
+<rect x="24" y="200" width="190" height="96" rx="8" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2"/>
+<text x="119.0" y="226.0" font-size="14" font-weight="700" text-anchor="middle" fill="#1b1f24" >INA226 module</text>
+<text x="119.0" y="244.0" font-size="13" font-weight="400" text-anchor="middle" fill="#4a5560" >I2C 0x40 (default)</text>
+<text x="119.0" y="262.0" font-size="13" font-weight="400" text-anchor="middle" fill="#4a5560" >bus V + shunt current</text>
+<text x="119.0" y="280.0" font-size="13" font-weight="400" text-anchor="middle" fill="#4a5560" >shunt value TBD</text>
+<rect x="244" y="200" width="190" height="96" rx="8" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2"/>
+<text x="339.0" y="226.0" font-size="14" font-weight="700" text-anchor="middle" fill="#1b1f24" >Voltage divider</text>
+<text x="339.0" y="244.0" font-size="13" font-weight="400" text-anchor="middle" fill="#4a5560" >resistor divider -&gt;</text>
+<text x="339.0" y="262.0" font-size="13" font-weight="400" text-anchor="middle" fill="#4a5560" >ADC1 (GPIO34 default)</text>
+<text x="339.0" y="280.0" font-size="13" font-weight="400" text-anchor="middle" fill="#4a5560" >resistor values TBD</text>
+<rect x="464" y="200" width="190" height="96" rx="8" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2"/>
+<text x="559.0" y="226.0" font-size="14" font-weight="700" text-anchor="middle" fill="#1b1f24" >DS18B20 probe</text>
+<text x="559.0" y="244.0" font-size="13" font-weight="400" text-anchor="middle" fill="#4a5560" >1-Wire, 4.7k pull-up</text>
+<text x="559.0" y="262.0" font-size="13" font-weight="400" text-anchor="middle" fill="#4a5560" >on switch / heatsink</text>
+<text x="559.0" y="280.0" font-size="13" font-weight="400" text-anchor="middle" fill="#4a5560" >(pull-up not in BOM)</text>
+<path d="M119,176 L119,200" fill="none" stroke="#1b1f24" stroke-width="2" stroke-dasharray="5 3" marker-end="url(#ah)"/>
+<path d="M339,176 L339,200" fill="none" stroke="#1b1f24" stroke-width="2" stroke-dasharray="5 3" marker-end="url(#ah)"/>
+<path d="M559,176 L559,200" fill="none" stroke="#1b1f24" stroke-width="2" stroke-dasharray="5 3" marker-end="url(#ah)"/>
+<rect x="160" y="350" width="520" height="120" rx="8" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2"/>
+<text x="420.0" y="388.0" font-size="14" font-weight="700" text-anchor="middle" fill="#1b1f24" >ESP32 DevKit (WROOM-32)</text>
+<text x="420.0" y="406.0" font-size="13" font-weight="400" text-anchor="middle" fill="#4a5560" >Phase 0: standalone bring-up tests only (firmware/bringup)</text>
+<text x="420.0" y="424.0" font-size="13" font-weight="400" text-anchor="middle" fill="#4a5560" >Product firmware (firmware/main): not started</text>
+<text x="420.0" y="442.0" font-size="13" font-weight="400" text-anchor="middle" fill="#4a5560" >Gate-control GPIO: unassigned</text>
+<path d="M119,296 L119,330 L250,330 L250,350" fill="none" stroke="#1b1f24" stroke-width="2" marker-end="url(#ah)" marker-start="url(#ah)"/>
+<text x="135" y="322" font-size="12" font-weight="400" text-anchor="start" fill="#4a5560" >I2C SDA/SCL</text>
+<path d="M339,296 L339,350" fill="none" stroke="#1b1f24" stroke-width="2" marker-end="url(#ah)"/>
+<text x="352" y="330" font-size="12" font-weight="400" text-anchor="start" fill="#4a5560" >ADC</text>
+<path d="M559,296 L559,350" fill="none" stroke="#1b1f24" stroke-width="2" marker-end="url(#ah)" marker-start="url(#ah)"/>
+<text x="572" y="330" font-size="12" font-weight="400" text-anchor="start" fill="#4a5560" >1-Wire</text>
+<path d="M677,350 L677,176 L610,176 L610,154" fill="none" stroke="#b45309" stroke-width="2" stroke-dasharray="7 4" marker-end="url(#ah)"/>
+<text x="687" y="230" font-size="12" font-weight="400" text-anchor="start" fill="#b45309" >gate / enable control</text>
+<text x="687" y="248" font-size="12" font-weight="400" text-anchor="start" fill="#b45309" >(GPIO + hardware pull to OFF</text>
+<text x="687" y="264" font-size="12" font-weight="400" text-anchor="start" fill="#b45309" >level required; both TBD)</text>
+<rect x="724" y="380" width="252" height="130" rx="8" fill="#fff1f2" stroke="#be123c" stroke-width="2"/>
+<text x="850.0" y="408.0" font-size="12.5" font-weight="700" text-anchor="middle" fill="#1b1f24" >Protection limitation</text>
+<text x="850.0" y="424.5" font-size="11.5" font-weight="400" text-anchor="middle" fill="#4a5560" >No independent hardware trip is</text>
+<text x="850.0" y="441.0" font-size="11.5" font-weight="400" text-anchor="middle" fill="#4a5560" >defined yet beyond fuse/PTC and, for</text>
+<text x="850.0" y="457.5" font-size="11.5" font-weight="400" text-anchor="middle" fill="#4a5560" >option A, the BTS7960&#x27;s own protection</text>
+<text x="850.0" y="474.0" font-size="11.5" font-weight="400" text-anchor="middle" fill="#4a5560" >(unverified). A firmware load-OFF</text>
+<text x="850.0" y="490.5" font-size="11.5" font-weight="400" text-anchor="middle" fill="#4a5560" >is not physical protection.</text>
+<rect x="24" y="560" width="190" height="76" rx="8" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2"/>
+<text x="119.0" y="585.0" font-size="14" font-weight="700" text-anchor="middle" fill="#1b1f24" >UART0</text>
+<text x="119.0" y="603.0" font-size="13" font-weight="400" text-anchor="middle" fill="#4a5560" >USB-serial console</text>
+<text x="119.0" y="621.0" font-size="13" font-weight="400" text-anchor="middle" fill="#4a5560" >115200 baud</text>
+<rect x="244" y="560" width="190" height="76" rx="8" fill="#f1f3f5" stroke="#5c6773" stroke-width="2" stroke-dasharray="7 4"/>
+<text x="339.0" y="585.0" font-size="14" font-weight="700" text-anchor="middle" fill="#1b1f24" >CAN transceiver</text>
+<text x="339.0" y="603.0" font-size="13" font-weight="400" text-anchor="middle" fill="#4a5560" >SN65HVD230</text>
+<text x="339.0" y="621.0" font-size="13" font-weight="400" text-anchor="middle" fill="#4a5560" >3.3 V, TX/RX GPIO TBD</text>
+<rect x="464" y="560" width="190" height="76" rx="8" fill="#f1f3f5" stroke="#5c6773" stroke-width="2" stroke-dasharray="7 4"/>
+<text x="559.0" y="585.0" font-size="14" font-weight="700" text-anchor="middle" fill="#1b1f24" >CAN bus</text>
+<text x="559.0" y="603.0" font-size="13" font-weight="400" text-anchor="middle" fill="#4a5560" >CANH/CANL, 120 ohm x2</text>
+<text x="559.0" y="621.0" font-size="13" font-weight="400" text-anchor="middle" fill="#4a5560" >termination TBD</text>
+<rect x="684" y="560" width="190" height="76" rx="8" fill="#f1f3f5" stroke="#5c6773" stroke-width="2" stroke-dasharray="7 4"/>
+<text x="779.0" y="585.0" font-size="14" font-weight="700" text-anchor="middle" fill="#1b1f24" >USB-CAN adapter</text>
+<text x="779.0" y="603.0" font-size="13" font-weight="400" text-anchor="middle" fill="#4a5560" >PC + CAN tool</text>
+<text x="779.0" y="621.0" font-size="13" font-weight="400" text-anchor="middle" fill="#4a5560" >(adapter in BOM)</text>
+<path d="M119,470 L119,560" fill="none" stroke="#1b1f24" stroke-width="2" marker-end="url(#ah)" marker-start="url(#ah)"/>
+<text x="132" y="520" font-size="12" font-weight="400" text-anchor="start" fill="#4a5560" >UART</text>
+<path d="M339,470 L339,560" fill="none" stroke="#1b1f24" stroke-width="2" marker-end="url(#ah)" marker-start="url(#ah)"/>
+<text x="352" y="520" font-size="12" font-weight="400" text-anchor="start" fill="#4a5560" >TWAI</text>
+<path d="M434,598 L464,598" fill="none" stroke="#1b1f24" stroke-width="2" marker-end="url(#ah)" marker-start="url(#ah)"/>
+<path d="M654,598 L684,598" fill="none" stroke="#1b1f24" stroke-width="2" marker-end="url(#ah)" marker-start="url(#ah)"/>
+<text x="24" y="672" font-size="12" font-weight="400" text-anchor="start" fill="#4a5560" >Power-return / common-ground topology and any isolation barrier are not yet defined (see docs/hardware_architecture.md).</text>
+<rect x="24" y="686" width="28" height="16" rx="3" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2"/>
+<text x="62" y="699" font-size="12.5" font-weight="400" text-anchor="start" fill="#4a5560" >Code exists in repo; not verified on hardware</text>
+<rect x="24" y="710" width="28" height="16" rx="3" fill="#dcfce7" stroke="#15803d" stroke-width="2"/>
+<text x="62" y="723" font-size="12.5" font-weight="400" text-anchor="start" fill="#4a5560" >Logic exists and is host-unit-tested; not integrated</text>
+<rect x="500" y="686" width="28" height="16" rx="3" fill="#f1f3f5" stroke="#5c6773" stroke-width="2" stroke-dasharray="7 4"/>
+<text x="538" y="699" font-size="12.5" font-weight="400" text-anchor="start" fill="#4a5560" >Planned / not implemented</text>
+<rect x="500" y="710" width="28" height="16" rx="3" fill="#fef3c7" stroke="#b45309" stroke-width="2" stroke-dasharray="7 4"/>
+<text x="538" y="723" font-size="12.5" font-weight="400" text-anchor="start" fill="#4a5560" >Unresolved hardware choice</text>
+</svg>

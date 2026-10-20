@@ -1,0 +1,51 @@
+name: Bug report
+description: Something behaves differently from what the documentation or code says
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please do not include secrets or personal data. For anything where a load could stay energized, tick the safety box.
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety relevance
+      options:
+        - label: This could leave a load energized, hide a fault, or give misleading electrical guidance
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options: [bring-up firmware, firmware/core, tools/bringup_capture.py, hardware docs/BOM, CAN docs, other]
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened and what did you expect?
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce (commands, menuconfig selection)
+  - type: input
+    id: version
+    attributes:
+      label: Commit hash and whether the tree was modified
+  - type: textarea
+    id: env
+    attributes:
+      label: Toolchain and versions
+      description: PlatformIO or ESP-IDF version, Python, OS, board variant (e.g. WROOM-32 38-pin)
+  - type: textarea
+    id: hardware
+    attributes:
+      label: Hardware setup (if relevant)
+      description: Sensors/modules fitted, wiring, supply setting, load - or "none, host-only"
+  - type: textarea
+    id: logs
+    attributes:
+      label: Evidence
+      description: Serial log or `tools/bringup_capture.py` JSONL excerpt, test output
+      render: text

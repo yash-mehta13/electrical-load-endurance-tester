@@ -7,12 +7,18 @@
  * `idf.py menuconfig` -> "Bring-up Test Selection (Phase 0)", flash it,
  * verify the reading looks plausible, then move to the next.
  *
- * NOT build-verified in the environment this was scaffolded in — run
- * `idf.py build` locally against ESP-IDF v5.x before trusting it compiles.
+ * Requires ESP-IDF >= 5.2 (new I2C master driver, ADC_ATTEN_DB_12).
+ * NOT build-verified yet — see docs/validation_report.md.
  */
 
 #include "sdkconfig.h"
+#include "esp_idf_version.h"
 #include "esp_log.h"
+#include "esp_system.h"
+
+#if ESP_IDF_VERSION < ESP_IDF_VERSION_VAL(5, 2, 0)
+#error "The bring-up firmware needs ESP-IDF 5.2 or newer"
+#endif
 
 static const char *TAG = "bringup";
 
@@ -28,7 +34,8 @@ void test_ds18b20_run(void);
 
 void app_main(void)
 {
-    ESP_LOGI(TAG, "Phase 0 bring-up starting");
+    ESP_LOGI(TAG, "Phase 0 bring-up starting (reset reason code %d, ESP-IDF %s)",
+             (int)esp_reset_reason(), esp_get_idf_version());
 
 #if CONFIG_BRINGUP_TEST_BLINK
     ESP_LOGI(TAG, "Running: blink + UART console skeleton");
